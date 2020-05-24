@@ -1,6 +1,7 @@
 package com.parkinglot.test;
 
 import com.parkinglot.exception.ParkingLotException;
+import com.parkinglot.model.ParkingOwner;
 import com.parkinglot.service.ParkingLot;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +13,7 @@ public class ParkingLotTest {
 
     @Before
     public void setUp() {
-        parkingLot = new ParkingLot();
+        parkingLot = new ParkingLot(2 );
         vehicle = new Object();
     }
 
@@ -52,6 +53,22 @@ public class ParkingLotTest {
             parkingLot.unParkedVehicle( new Object() );
         } catch(ParkingLotException e) {
             Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_UNPARKED, e.type);
+        }
+    }
+
+    //UC-3
+    //TC-3.1
+    @Test
+    public void givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner() {
+        ParkingOwner parkingOwner = new ParkingOwner();
+        try {
+            parkingLot.registerOwner( parkingOwner );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( new Object() );
+        } catch (ParkingLotException e) {
+            Assert.assertTrue(parkingOwner.isParkingFull());
+            Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL, e.type);
         }
     }
 }
