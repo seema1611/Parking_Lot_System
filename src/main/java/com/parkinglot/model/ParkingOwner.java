@@ -1,15 +1,17 @@
 package com.parkinglot.model;
 
-public class ParkingOwner {
-    private boolean parkingCapacity;
+import com.parkinglot.observer.ParkingLotRegister;
 
-    public void parkingFull() {
-        this.parkingCapacity = true;
-        //System.out.println( "Parking is full" );
-    }
+public class ParkingOwner implements ParkingLotRegister {
+    private boolean parkingCapacity;
 
     public boolean isParkingFull() {
         return this.parkingCapacity;
+    }
+
+    @Override
+    public void parkingFull(boolean parkingCapacity) {
+        this.parkingCapacity = parkingCapacity;
     }
 }
 

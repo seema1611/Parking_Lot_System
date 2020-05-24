@@ -10,11 +10,13 @@ import org.junit.Test;
 public class ParkingLotTest {
     private ParkingLot parkingLot;
     private Object vehicle;
+    private ParkingOwner parkingOwner;
 
     @Before
     public void setUp() {
         parkingLot = new ParkingLot(2 );
         vehicle = new Object();
+        parkingOwner = new ParkingOwner();
     }
 
     //UC-1
@@ -60,7 +62,6 @@ public class ParkingLotTest {
     //TC-3.1
     @Test
     public void givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner() {
-        ParkingOwner parkingOwner = new ParkingOwner();
         try {
             parkingLot.registerOwner( parkingOwner );
             parkingLot.parkVehicle( vehicle );
@@ -69,6 +70,21 @@ public class ParkingLotTest {
         } catch (ParkingLotException e) {
             Assert.assertTrue(parkingOwner.isParkingFull());
             Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL, e.type);
+        }
+    }
+
+    //TC-3.2
+    @Test
+    public void givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner() {
+        try {
+            parkingLot.registerOwner( parkingOwner );
+            parkingLot.deRegisterOwner( parkingOwner );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( new Object() );
+        } catch (ParkingLotException e) {
+            Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL, e.type);
+            Assert.assertFalse(parkingOwner.isParkingFull());
         }
     }
 }
