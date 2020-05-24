@@ -1,6 +1,7 @@
 package com.parkinglot.test;
 
 import com.parkinglot.exception.ParkingLotException;
+import com.parkinglot.model.AirportSecurity;
 import com.parkinglot.model.ParkingOwner;
 import com.parkinglot.service.ParkingLot;
 import org.junit.Assert;
@@ -11,12 +12,14 @@ public class ParkingLotTest {
     private ParkingLot parkingLot;
     private Object vehicle;
     private ParkingOwner parkingOwner;
+    AirportSecurity airportSecurity;
 
     @Before
     public void setUp() {
         parkingLot = new ParkingLot(2 );
         vehicle = new Object();
         parkingOwner = new ParkingOwner();
+        airportSecurity = new AirportSecurity();
     }
 
     //UC-1
@@ -85,6 +88,21 @@ public class ParkingLotTest {
         } catch (ParkingLotException e) {
             Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL, e.type);
             Assert.assertFalse(parkingOwner.isParkingFull());
+        }
+    }
+
+    //UC-4
+    //TC-4.1
+    @Test
+    public void givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity() {
+        try {
+            parkingLot.registerOwner( airportSecurity );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( new Object() );
+        } catch (ParkingLotException e) {
+            Assert.assertTrue(airportSecurity.isParkingFull());
+            Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL, e.type);
         }
     }
 }

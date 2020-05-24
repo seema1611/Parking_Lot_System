@@ -26,6 +26,6 @@ public class InformObserver {
 
     public void isParkingFull() {
         for( ParkingLotRegister parkingLotRegister : list)
-            parkingLotRegister.parkingFull(this.parkingCapacity);
+            parkingLotRegister.parkingFull( this.parkingCapacity );
     }
 }
