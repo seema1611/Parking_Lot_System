@@ -15,4 +15,10 @@ public class ParkingLot {
             return true;
         throw new ParkingLotException( "Vehicle Not Parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED );
     }
+
+    public boolean unParkedVehicle(Object vehicle) {
+        if (this.vehicle == vehicle)
+            return true;
+        return false;
+    }
 }
