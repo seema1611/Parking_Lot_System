@@ -1,5 +1,6 @@
 package com.parkinglot.test;
 
+import com.parkinglot.exception.ParkingLotException;
 import com.parkinglot.service.ParkingLot;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,5 +23,15 @@ public class ParkingLotTest {
         parkingLot.parkVehicle( vehicle );
         boolean isParked = parkingLot.isParkedVehicle( vehicle );
         Assert.assertTrue( isParked );
+    }
+
+    //TC-1.2
+    @Test
+    public void givenVehicle_WhenNotParked_ShouldReturnException() {
+        try {
+            parkingLot.isParkedVehicle( vehicle );
+        } catch(ParkingLotException e) {
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED, e.type);
+        }
     }
 }

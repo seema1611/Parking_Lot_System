@@ -1,16 +1,18 @@
 package com.parkinglot.service;
 
+import com.parkinglot.exception.ParkingLotException;
+
 public class ParkingLot {
 
     private Object vehicle;
 
-    public void parkVehicle(Object vehicle) {
+    public void parkVehicle( Object vehicle ) {
         this.vehicle = vehicle;
     }
 
-    public boolean isParkedVehicle(Object vehicle) {
+    public boolean isParkedVehicle( Object vehicle ) {
         if(this.vehicle == vehicle)
             return true;
-        return false;
+        throw new ParkingLotException( "Vehicle Not Parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED );
     }
 }
