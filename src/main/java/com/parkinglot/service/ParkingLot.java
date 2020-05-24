@@ -19,6 +19,6 @@ public class ParkingLot {
     public boolean unParkedVehicle(Object vehicle) {
         if (this.vehicle == vehicle)
             return true;
-        return false;
+        throw new ParkingLotException( "Vehicle Not UnParked", ParkingLotException.ExceptionType.VEHICLE_NOT_UNPARKED );
     }
 }

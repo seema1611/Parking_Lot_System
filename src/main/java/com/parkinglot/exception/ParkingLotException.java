@@ -3,7 +3,7 @@ package com.parkinglot.exception;
 public class ParkingLotException extends RuntimeException {
 
     public enum ExceptionType {
-        VEHICLE_NOT_PARKED
+        VEHICLE_NOT_PARKED, VEHICLE_NOT_UNPARKED
     }
 
     public ExceptionType type;
