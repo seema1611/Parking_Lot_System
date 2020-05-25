@@ -8,6 +8,7 @@ public class AirportSecurity implements ParkingLotRegister {
     @Override
     public void parkingFull( boolean parkingCapacity ) {
         this.parkingCapacity = parkingCapacity;
+        isParkingFull();
     }
 
     public boolean isParkingFull() {

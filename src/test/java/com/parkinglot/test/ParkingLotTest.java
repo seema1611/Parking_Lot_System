@@ -118,4 +118,20 @@ public class ParkingLotTest {
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
         }
     }
+
+    //TC-4.3
+    @Test
+    public void givenVehicle_WhenParkingFullAndAirportAndOwnerAreObserver_ShouldInformBoth() {
+        try {
+            parkingLot.registerOwner( parkingOwner );
+            parkingLot.registerOwner( airportSecurity );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( new Object() );
+        } catch ( ParkingLotException e ) {
+            Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
+            Assert.assertTrue( parkingOwner.isParkingFull() );
+            Assert.assertTrue( airportSecurity.isParkingFull() );
+        }
+    }
 }
