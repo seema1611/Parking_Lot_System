@@ -134,4 +134,21 @@ public class ParkingLotTest {
             Assert.assertTrue( airportSecurity.isParkingFull() );
         }
     }
+
+    //UC-5
+    //TC-5.1
+    @Test
+    public void givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner() {
+        try {
+            parkingLot.registerOwner( parkingOwner );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( new Object() );
+        } catch ( ParkingLotException e ) {
+            Assert.assertTrue( parkingOwner.isParkingFull() );
+            Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
+        }
+        parkingLot.unParkedVehicle( vehicle );
+        Assert.assertFalse( parkingOwner.isParkingFull() );
+    }
 }

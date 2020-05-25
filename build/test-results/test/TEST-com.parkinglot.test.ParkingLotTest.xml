@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.parkinglot.test.ParkingLotTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-05-25T04:11:21" hostname="LAPTOP-OT35PSQH" time="0.024">
+<testsuite name="com.parkinglot.test.ParkingLotTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-05-25T04:53:22" hostname="LAPTOP-OT35PSQH" time="0.032">
   <properties/>
-  <testcase name="givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.006"/>
+  <testcase name="givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.007"/>
   <testcase name="givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.005"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
   <testcase name="givenVehicle_WhenParkingFullAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportIsObserver_ShouldInformAirport" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
   <testcase name="givenVehicle_WhenNotParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
   <testcase name="givenVehicleToPark_WhenParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
-  <testcase name="givenVehicle_WhenNotUnParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
-  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsNotObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
-  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
-  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenNotUnParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsNotObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
