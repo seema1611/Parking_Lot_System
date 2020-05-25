@@ -9,7 +9,7 @@ public class ParkingLotException extends RuntimeException {
     public ExceptionType type;
 
     public ParkingLotException(String message, ExceptionType type) {
-        super(message);
+        super( message );
         this.type = type;
     }
 }

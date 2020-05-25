@@ -10,7 +10,7 @@ public class ParkingOwner implements ParkingLotRegister {
     }
 
     @Override
-    public void parkingFull(boolean parkingCapacity) {
+    public void parkingFull( boolean parkingCapacity ) {
         this.parkingCapacity = parkingCapacity;
     }
 }

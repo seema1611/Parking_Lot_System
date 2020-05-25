@@ -12,7 +12,7 @@ public class ParkingLot {
     private int currentCapacity = 0;
     InformObserver informObserver;
 
-    public ParkingLot(int parkingCapacity) {
+    public ParkingLot( int parkingCapacity ) {
         this.parkingCapacity = parkingCapacity;
         this.informObserver = new InformObserver();
     }
@@ -27,13 +27,13 @@ public class ParkingLot {
     }
 
     public boolean isParkedVehicle( Object vehicle ) {
-        if(this.vehicle == vehicle)
+        if( this.vehicle == vehicle )
             return true;
         throw new ParkingLotException( "Vehicle Not Parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED );
     }
 
-    public boolean unParkedVehicle(Object vehicle) {
-        if (this.vehicle == vehicle)
+    public boolean unParkedVehicle( Object vehicle ) {
+        if ( this.vehicle == vehicle )
             return true;
         throw new ParkingLotException( "Vehicle Not UnParked", ParkingLotException.ExceptionType.VEHICLE_NOT_UNPARKED );
     }
