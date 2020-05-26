@@ -1,25 +1,30 @@
 package com.parkinglot.test;
 
 import com.parkinglot.exception.ParkingLotException;
-import com.parkinglot.model.AirportSecurity;
-import com.parkinglot.model.ParkingOwner;
+import com.parkinglot.register.AirportSecurity;
+import com.parkinglot.register.ParkingOwner;
 import com.parkinglot.service.ParkingLot;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingLotTest {
-    private ParkingLot parkingLot;
     private Object vehicle;
-    private ParkingOwner parkingOwner;
-    AirportSecurity airportSecurity;
+    private ParkingLot parkingLot;
+    private List<Integer> listOfEmptySlots;
+    public ParkingOwner parkingOwner;
+    public AirportSecurity airportSecurity;
 
     @Before
-    public void setUp() {
-        parkingLot = new ParkingLot(2 );
-        vehicle = new Object();
+    public void setUp() throws Exception {
+        parkingLot = new ParkingLot( 2 );
         parkingOwner = new ParkingOwner();
         airportSecurity = new AirportSecurity();
+        vehicle = new Object();;
+        listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
     }
 
     //UC-1
@@ -35,7 +40,8 @@ public class ParkingLotTest {
     @Test
     public void givenVehicle_WhenNotParked_ShouldReturnException() {
         try {
-            parkingLot.isParkedVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.isParkedVehicle( new Object() );
         } catch(ParkingLotException e) {
             Assert.assertEquals( ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED, e.type );
         }
@@ -68,9 +74,8 @@ public class ParkingLotTest {
         try {
             parkingLot.registerOwner( parkingOwner );
             parkingLot.parkVehicle( vehicle );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
-        } catch ( ParkingLotException e ) {
+        } catch (ParkingLotException e) {
             Assert.assertTrue( parkingOwner.isParkingFull() );
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
         }
@@ -82,7 +87,6 @@ public class ParkingLotTest {
         try {
             parkingLot.registerOwner( parkingOwner );
             parkingLot.deRegisterOwner( parkingOwner );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
@@ -96,7 +100,6 @@ public class ParkingLotTest {
     public void givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity() {
         try {
             parkingLot.registerOwner( airportSecurity );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
@@ -112,7 +115,6 @@ public class ParkingLotTest {
             parkingLot.registerOwner( airportSecurity );
             parkingLot.deRegisterOwner( airportSecurity );
             parkingLot.parkVehicle( vehicle );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
@@ -126,12 +128,10 @@ public class ParkingLotTest {
             parkingLot.registerOwner( parkingOwner );
             parkingLot.registerOwner( airportSecurity );
             parkingLot.parkVehicle( vehicle );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
-            Assert.assertTrue( parkingOwner.isParkingFull() );
-            Assert.assertTrue( airportSecurity.isParkingFull() );
+            Assert.assertTrue( parkingOwner.isParkingFull() && airportSecurity.isParkingFull());
         }
     }
 
@@ -141,7 +141,6 @@ public class ParkingLotTest {
     public void givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner() {
         try {
             parkingLot.registerOwner( parkingOwner );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
@@ -158,9 +157,9 @@ public class ParkingLotTest {
         try {
             parkingLot.registerOwner( airportSecurity );
             parkingLot.parkVehicle( vehicle );
-            parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
+            System.out.println(e);
             Assert.assertTrue( airportSecurity.isParkingFull() );
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
         }
@@ -171,19 +170,26 @@ public class ParkingLotTest {
     //TC-5.3
     @Test
     public void givenVehicle_WhenParkingIsAvailableAndAirportAndOwnerAreObserver_ShouldInformBoth() {
+        Object vehicle1 = new Object();
         try {
             parkingLot.registerOwner( parkingOwner );
             parkingLot.registerOwner( airportSecurity );
             parkingLot.parkVehicle( vehicle );
-            parkingLot.parkVehicle( vehicle );
+            parkingLot.parkVehicle( vehicle1 );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
-            Assert.assertTrue( parkingOwner.isParkingFull() );
-            Assert.assertTrue( airportSecurity.isParkingFull() );
+            Assert.assertTrue( parkingOwner.isParkingFull() && airportSecurity.isParkingFull() );
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
         }
         parkingLot.unParkedVehicle( vehicle );
-        Assert.assertFalse( parkingOwner.isParkingFull() );
-        Assert.assertFalse( airportSecurity.isParkingFull() );
+        Assert.assertFalse( parkingOwner.isParkingFull() && airportSecurity.isParkingFull() );
+    }
+
+    //UC-6
+    //TC-6.1
+    @Test
+    public void givenParkingLotSystem_WhenParkingCapacityIsSet_ShouldReturnParkingCapacity() {
+        int parkingLotCapacity = parkingLot.setCapacity(100);
+        Assert.assertEquals(100, parkingLotCapacity);
     }
 }

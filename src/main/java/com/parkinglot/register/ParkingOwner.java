@@ -1,8 +1,8 @@
-package com.parkinglot.model;
+package com.parkinglot.register;
 
 import com.parkinglot.observer.ParkingLotRegister;
 
-public class AirportSecurity implements ParkingLotRegister {
+public class ParkingOwner implements ParkingLotRegister {
     private boolean parkingCapacity;
 
     @Override
@@ -15,3 +15,4 @@ public class AirportSecurity implements ParkingLotRegister {
         return this.parkingCapacity;
     }
 }
+
