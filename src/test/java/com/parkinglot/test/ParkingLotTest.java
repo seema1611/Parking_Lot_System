@@ -196,12 +196,23 @@ public class ParkingLotTest {
     //TC-6.2
     @Test
     public void givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots() {
-        List<Integer> expectedListValue = new ArrayList();
-        expectedListValue.add(1);
+        List<Integer> expectedList = new ArrayList();
+        expectedList.add(1);
         parkingLot.setCapacity(2);
         listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
         parkingLot.parkVehicle( vehicle );
         listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
-        Assert.assertEquals( expectedListValue, listOfEmptySlots );
+        Assert.assertEquals(expectedList, listOfEmptySlots );
+    }
+
+    //UC-7
+    //TC-7.1
+    @Test
+    public void givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot() {
+        parkingLot.setCapacity(5);
+        listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
+        parkingLot.parkVehicle( vehicle );
+        int slotNumber = parkingLot.findVehicle( vehicle );
+        Assert.assertEquals(0, slotNumber);
     }
 }

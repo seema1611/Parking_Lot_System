@@ -11,11 +11,9 @@ import java.util.stream.IntStream;
 public class ParkingLot {
     private int parkingCapacity;
     private List vehicleList;
-    //private List removeVehicleList;
     InformObserver informObserver;
 
     public ParkingLot(int parkingCapacity) {
-        //this.removeVehicleList = new ArrayList();
         this.informObserver = new InformObserver();
         setCapacity(parkingCapacity);
     }
@@ -69,6 +67,14 @@ public class ParkingLot {
             return true;
         }
         throw new ParkingLotException( "Vehicle Not UnParked", ParkingLotException.ExceptionType.VEHICLE_NOT_UNPARKED );
+    }
+
+    public int findVehicle(Object vehicle) {
+        if(vehicleList.contains(vehicle)) {
+            System.out.println(vehicleList.indexOf(vehicle));
+            return vehicleList.indexOf(vehicle);
+        }
+        throw new ParkingLotException("Vehicle Is Not Available", ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND);
     }
 
     public void registerOwner( ParkingLotRegister register) {
