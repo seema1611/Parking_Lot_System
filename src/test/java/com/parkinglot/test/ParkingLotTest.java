@@ -192,4 +192,16 @@ public class ParkingLotTest {
         int parkingLotCapacity = parkingLot.setCapacity(100);
         Assert.assertEquals(100, parkingLotCapacity);
     }
+
+    //TC-6.2
+    @Test
+    public void givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots() {
+        List<Integer> expectedListValue = new ArrayList();
+        expectedListValue.add(1);
+        parkingLot.setCapacity(2);
+        listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
+        parkingLot.parkVehicle( vehicle );
+        listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
+        Assert.assertEquals( expectedListValue, listOfEmptySlots );
+    }
 }
