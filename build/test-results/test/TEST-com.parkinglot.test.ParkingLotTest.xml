@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.parkinglot.test.ParkingLotTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-26T16:44:38" hostname="LAPTOP-OT35PSQH" time="0.044">
+<testsuite name="com.parkinglot.test.ParkingLotTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-05-26T16:59:09" hostname="LAPTOP-OT35PSQH" time="0.055">
   <properties/>
-  <testcase name="givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot" classname="com.parkinglot.test.ParkingLotTest" time="0.044"/>
-  <system-out><![CDATA[0
-]]></system-out>
+  <testcase name="givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.029"/>
+  <testcase name="givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.004"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportIsObserver_ShouldInformAirport" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenNotParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicleToPark_WhenParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenVehicleNotFound_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLotSystem_WhenParkingCapacityIsSet_ShouldReturnParkingCapacity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenVehicle_WhenNotUnParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsNotObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

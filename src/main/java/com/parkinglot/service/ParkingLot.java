@@ -71,7 +71,6 @@ public class ParkingLot {
 
     public int findVehicle(Object vehicle) {
         if(vehicleList.contains(vehicle)) {
-            System.out.println(vehicleList.indexOf(vehicle));
             return vehicleList.indexOf(vehicle);
         }
         throw new ParkingLotException("Vehicle Is Not Available", ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND);

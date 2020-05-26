@@ -210,9 +210,20 @@ public class ParkingLotTest {
     @Test
     public void givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot() {
         parkingLot.setCapacity(5);
-        listOfEmptySlots = parkingLot.getListOfEmptyParkingSlots();
         parkingLot.parkVehicle( vehicle );
         int slotNumber = parkingLot.findVehicle( vehicle );
         Assert.assertEquals(0, slotNumber);
+    }
+
+    //TC-7.2
+    @Test
+    public void givenParkingLotSystem_WhenVehicleNotFound_ShouldReturnException() {
+        try {
+            parkingLot.setCapacity(5);
+            parkingLot.parkVehicle( vehicle );
+            parkingLot.findVehicle( new Object() );
+        } catch ( ParkingLotException e ) {
+            Assert.assertEquals( ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND, e.type );
+        }
     }
 }
