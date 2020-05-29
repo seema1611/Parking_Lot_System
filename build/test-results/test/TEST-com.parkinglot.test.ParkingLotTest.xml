@@ -1,22 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.parkinglot.test.ParkingLotTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-05-26T16:59:09" hostname="LAPTOP-OT35PSQH" time="0.055">
+<testsuite name="com.parkinglot.test.ParkingLotTest" tests="44" skipped="0" failures="0" errors="0" timestamp="2020-05-28T18:13:20" hostname="LAPTOP-OT35PSQH" time="0.292">
   <properties/>
-  <testcase name="givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.029"/>
+  <testcase name="givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.08"/>
+  <testcase name="givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturndetailsOfVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.013"/>
   <testcase name="givenParkingLotSystem_WhenVehicleFound_ShouldReturnVehicleSlot" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.004"/>
-  <testcase name="givenVehicle_WhenParkingFullAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
-  <testcase name="givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.006"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportAndOwnerAreObserver_ShouldInformBoth" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenToyotaCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCars" classname="com.parkinglot.test.ParkingLotTest" time="0.008"/>
+  <testcase name="givenParkingLotSystem_WhenParkedSmallVehicleAndDriverIsNormal_ShouldReturnDetailsOfVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.02"/>
+  <testcase name="givenLargeVehicleToPark_WhenParkingLotHasSpaceAndDriverIsHandicap_ShouldParkVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
   <testcase name="givenVehicle_WhenParkingIsAvailableAndAirportIsObserver_ShouldInformAirport" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenVehicle_WhenNotParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenVehicleToPark_WhenParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenParkingLotSystem_WhenVehicleNotFound_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLotSystem_WhenParkedLargeVehicleAndDriverIsHandicap_ShouldReturnDetailsOfVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenParkingLotSystem_WhenNotParkedBlueToyotaCar_ShouldReturnEmptyList" classname="com.parkinglot.test.ParkingLotTest" time="0.008"/>
+  <testcase name="givenParkingLotSystem_WhenVehicleNotFound_ShouldThrowException" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenVehicleToPark_WhenParked_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenMultipleVehiclesAtMultipleParkingLots_WhenParkEvenly_shouldParkVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.008"/>
+  <testcase name="givenBlueToyotaCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBlueToyotataCar" classname="com.parkinglot.test.ParkingLotTest" time="0.005"/>
+  <testcase name="givenVehicleToUnpark_WhenNotParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenMultipleVehiclesAtMultipleParkingLots_WhenParkEvenly_shouldParkVehicleBasedOnDriverType" classname="com.parkinglot.test.ParkingLotTest" time="0.003"/>
+  <testcase name="givenParkingLotSystem_WhenParkedVehicle_ShouldReturnDetailsOfAllVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenBlueCarToPark_whenParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars" classname="com.parkinglot.test.ParkingLotTest" time="0.023"/>
+  <testcase name="givenMultipleVehiclesAtMultipleParkingLotsLessThanActualCapacity_WhenParkEvenly_shouldReturnFirstIndexEmpty" classname="com.parkinglot.test.ParkingLotTest" time="0.005"/>
+  <testcase name="givenWhiteCarToPark_whenMultipleParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenBMWCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCars" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicleToPark_WhenNotParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenParkedSmallVehicleAndDriverIsHandicap_ShouldReturnDetailsOfVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
   <testcase name="givenParkingLotSystem_WhenParkingCapacityIsSet_ShouldReturnParkingCapacity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
-  <testcase name="givenVehicle_WhenNotUnParked_ShouldReturnException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin10Minutes" classname="com.parkinglot.test.ParkingLotTest" time="0.012"/>
+  <testcase name="givenBMWCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCar" classname="com.parkinglot.test.ParkingLotTest" time="0.005"/>
+  <testcase name="givenWhiteCarToPark_whenParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
+  <testcase name="givenVehicleToUnPark_WhenCapacityIs2_ShouldBeAbleToUnPark2Vehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenLargeVehicleToPark_WhenParkingLotHasSpace_ShouldParkVehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicleToPark_WhenSameVehicleAlreadyParked_ShouldThrowException" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLotSystem_WhenNotAddedLots_ShouldReturnFalse" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Miutes" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenMultipleVehiclesLessThanActualCapacity_WhenParkEvenly_shouldReturnFirstIndexEmpty" classname="com.parkinglot.test.ParkingLotTest" time="0.004"/>
+  <testcase name="givenVehicleToPark_WhenCapacityIs2_ShouldBeAbleToPark2Vehicle" classname="com.parkinglot.test.ParkingLotTest" time="0.002"/>
   <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsNotObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
-  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
-  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.003"/>
+  <testcase name="givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
+  <testcase name="givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenVehicleToPark_whenDriverIsHandicap_shouldParkedAtNearestSpot" classname="com.parkinglot.test.ParkingLotTest" time="0.003"/>
+  <testcase name="givenParkingLotSystem_WhenAddedLots_ShouldReturnTrue" classname="com.parkinglot.test.ParkingLotTest" time="0.0"/>
+  <testcase name="givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes" classname="com.parkinglot.test.ParkingLotTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

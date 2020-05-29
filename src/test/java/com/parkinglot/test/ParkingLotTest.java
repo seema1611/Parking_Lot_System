@@ -159,7 +159,6 @@ public class ParkingLotTest {
             parkingLot.parkVehicle( vehicle );
             parkingLot.parkVehicle( new Object() );
         } catch ( ParkingLotException e ) {
-            System.out.println(e);
             Assert.assertTrue( airportSecurity.isParkingFull() );
             Assert.assertEquals( ParkingLotException.ExceptionType.PARKING_FULL, e.type );
         }
@@ -217,7 +216,7 @@ public class ParkingLotTest {
 
     //TC-7.2
     @Test
-    public void givenParkingLotSystem_WhenVehicleNotFound_ShouldReturnException() {
+    public void givenParkingLotSystem_WhenVehicleNotFound_ShouldThrowException() {
         try {
             parkingLot.setCapacity(5);
             parkingLot.parkVehicle( vehicle );
@@ -225,5 +224,17 @@ public class ParkingLotTest {
         } catch ( ParkingLotException e ) {
             Assert.assertEquals( ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND, e.type );
         }
+    }
+
+    //UC-8
+    //TC-8.1
+    @Test
+    public void givenParkingLot_WhenVehicleParkedRecodTime_ShouldInformChargesToCustomer() {
+        parkingLot.setCapacity(5);
+        parkingLot.parkVehicle( vehicle );
+        parkingLot.isParkedVehicle( vehicle );
+        parkingLot.unParkedVehicle( vehicle );
+        int chargesPerHour = parkingLot.getTime();
+        Assert.assertEquals(20,chargesPerHour);
     }
 }

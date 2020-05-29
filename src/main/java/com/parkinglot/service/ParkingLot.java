@@ -4,18 +4,25 @@ import com.parkinglot.exception.ParkingLotException;
 import com.parkinglot.observer.InformObserver;
 import com.parkinglot.observer.ParkingLotRegister;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class ParkingLot {
+    private static final int CHARGES = 20 ;
     private int parkingCapacity;
     private List vehicleList;
     InformObserver informObserver;
+    Instant startTime;
+    Instant endTime;
+    Duration elapsedTime;
+    Instant time;
 
     public ParkingLot(int parkingCapacity) {
         this.informObserver = new InformObserver();
-        setCapacity(parkingCapacity);
+        setCapacity( parkingCapacity );
     }
 
     public int setCapacity(int parkingCapacity) {
@@ -26,7 +33,7 @@ public class ParkingLot {
 
     public void initializeParkingLot() {
         this.vehicleList = new ArrayList();
-        IntStream.iterate( 0, i ->i).limit(parkingCapacity)
+        IntStream.iterate( 0, i ->i).limit( parkingCapacity )
                 .forEach(slots -> vehicleList.add(null));
     }
 
@@ -48,7 +55,7 @@ public class ParkingLot {
         }
         List slotNumber = getListOfEmptyParkingSlots();
         this.vehicleList.set((Integer) slotNumber.get(0), vehicle);
-        //System.out.println("Slot: " +slotNumber+ " Name: " +vehicle);
+        startTime = Instant.now();
         if ( !vehicleList.contains(null)) {
             informObserver.parkingFull();
         }
@@ -63,6 +70,7 @@ public class ParkingLot {
     public boolean unParkedVehicle( Object vehicle ) {
         if (this.vehicleList.contains(vehicle)) {
             this.vehicleList.remove(vehicle);
+            endTime = Instant.now();
             informObserver.parkingAvailable();
             return true;
         }
@@ -74,6 +82,15 @@ public class ParkingLot {
             return vehicleList.indexOf(vehicle);
         }
         throw new ParkingLotException("Vehicle Is Not Available", ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND);
+    }
+
+    public int getTime() {
+        int charges = CHARGES;
+        elapsedTime = Duration.between( this.endTime, this.startTime);
+        long hour = elapsedTime.toHours();
+        if ( hour == 0)
+            return charges;
+        return (int) (charges * hour);
     }
 
     public void registerOwner( ParkingLotRegister register) {
