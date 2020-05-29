@@ -94,6 +94,13 @@ public class ParkingLotSystem {
         return vehicleListByColorAndModel;
     }
 
+    public List<List<String>> findVehicleByModel(String model) {
+        List<List<String>> vehicleListByColor = this.parkingLotList.stream()
+                .map(parkingLot -> parkingLot.findByModel(model))
+                .collect(Collectors.toList());
+        return vehicleListByColor;
+    }
+
     public void registerOwner( ParkingLotRegister register) {
         informObserver.registerParkingLotObserver( register );
     }
