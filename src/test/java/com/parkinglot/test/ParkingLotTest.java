@@ -447,4 +447,24 @@ public class ParkingLotTest {
         List<List<Integer>> vehicleByColor = parkingLotSystem.findVehicleByColor("WHITE");
         Assert.assertEquals(expectedList, vehicleByColor);
     }
+
+    //TC-12.2
+    @Test
+    public void givenWhiteCarToPark_whenMultipleParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars() {
+        List<List<Integer>> expectedList = new ArrayList<>();
+        List<Integer> lot1 = new ArrayList<>();
+        List<Integer> lot2 = new ArrayList<>();
+        lot1.add(0);
+        lot2.add(0);
+        expectedList.add(lot1);
+        expectedList.add(lot2);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLotSystem.addLot(parkingLot2);
+        Vehicle vehicle = new Vehicle("WHITE");
+        Vehicle vehicle2 = new Vehicle("WHITE");
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+        List<List<Integer>> vehicleByColor = parkingLotSystem.findVehicleByColor("WHITE");
+        Assert.assertEquals(expectedList, vehicleByColor);
+    }
 }
