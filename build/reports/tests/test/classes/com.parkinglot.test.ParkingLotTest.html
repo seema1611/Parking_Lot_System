@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">34</div>
+<div class="counter">36</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.210s</div>
+<div class="counter">0.129s</div>
 <p>duration</p>
 </div>
 </td>
@@ -76,27 +76,37 @@
 </thead>
 <tr>
 <td class="success">givenBMWCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCars</td>
-<td class="success">0.015s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenBMWCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCar</td>
-<td class="success">0.004s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenBlueToyotaCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBlueToyotaCar</td>
-<td class="success">0.004s</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenLargeVehicleToPark_WhenParkingLotHasSpaceAndDriverIsHandicap_ShouldParkVehicle</td>
-<td class="success">0.002s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenLargeVehicleToPark_WhenParkingLotHasSpace_ShouldParkVehicle</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -106,7 +116,7 @@
 </tr>
 <tr>
 <td class="success">givenMultipleVehiclesAtMultipleParkingLots_WhenParkEvenly_shouldParkVehicle</td>
-<td class="success">0.005s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -116,32 +126,32 @@
 </tr>
 <tr>
 <td class="success">givenMultipleVehiclesLessThanActualCapacity_WhenParkEvenly_shouldReturnFirstIndexEmpty</td>
-<td class="success">0.003s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenAddedLots_ShouldReturnTrue</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots</td>
 <td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">givenParkingLotSystem_WhenNotAddedLots_ShouldReturnFalse</td>
+<td class="success">givenParkingLotSystem_WhenAddedLots_ShouldReturnTrue</td>
 <td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenParkingLotSystem_WhenNotAddedLots_ShouldReturnFalse</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenNotParkedBlueToyotaCar_ShouldReturnEmptyList</td>
-<td class="success">0.028s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenParkingCapacityIsSet_ShouldReturnParkingCapacity</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -151,12 +161,12 @@
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenVehicleNotFound_ShouldThrowException</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToPark_WhenCapacityIs2_ShouldBeAbleToPark2Vehicle</td>
-<td class="success">0.006s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -166,7 +176,7 @@
 </tr>
 <tr>
 <td class="success">givenVehicleToPark_WhenParked_ShouldReturnTrue</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -176,17 +186,17 @@
 </tr>
 <tr>
 <td class="success">givenVehicleToPark_whenDriverIsHandicap_shouldParkedAtNearestSpot</td>
-<td class="success">0.001s</td>
+<td class="success">0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToUnPark_WhenCapacityIs2_ShouldBeAbleToUnPark2Vehicle</td>
-<td class="success">0.002s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue</td>
-<td class="success">0.089s</td>
+<td class="success">0.054s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -196,7 +206,7 @@
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingFullAndAirportAndOwnerAreObserver_ShouldInformBoth</td>
-<td class="success">0.002s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -211,7 +221,7 @@
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner</td>
-<td class="success">0.009s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -221,7 +231,7 @@
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingIsAvailableAndAirportAndOwnerAreObserver_ShouldInformBoth</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -236,7 +246,7 @@
 </tr>
 <tr>
 <td class="success">givenWhiteCarToPark_whenMultipleParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars</td>
-<td class="success">0.018s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -254,7 +264,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.1</a> at 29 May, 2020 10:49:11 PM</p>
+<a href="http://www.gradle.org">Gradle 6.1</a> at 29 May, 2020 11:03:53 PM</p>
 </div>
 </div>
 </body>

@@ -3,7 +3,8 @@ package com.parkinglot.enums;
 import java.util.Comparator;
 
 public enum DriverType {
-    NORMAL(Comparator.reverseOrder()), HANDICAP(Comparator.naturalOrder());
+    NORMAL(Comparator.reverseOrder()),
+    HANDICAP(Comparator.naturalOrder());
 
     public Comparator<Integer> order;
 

@@ -8,6 +8,7 @@ import com.parkinglot.model.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -100,6 +101,15 @@ public class ParkingLot {
                 .map(parkingSlot -> parkingSlot.getLocation() + " " + parkingSlot.getVehicle())
                 .collect(Collectors.toList());
         return vehicleListByModel;
+    }
+
+    public List<String> findByTime(int parkedTime) {
+        List<String> vehicleListByTime = this.vehiclesList.stream()
+                .filter(parkingSlot -> parkingSlot.getVehicle() != null)
+                .filter(parkingSlot -> (parkingSlot.time - (int) TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis())) < parkedTime)
+                .map(parkingSlot -> parkingSlot.getLocation() + " " + parkingSlot.getVehicle())
+                .collect(Collectors.toList());
+        return vehicleListByTime;
     }
 
     public boolean isParkingFull() {

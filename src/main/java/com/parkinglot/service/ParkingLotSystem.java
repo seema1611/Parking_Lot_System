@@ -101,6 +101,13 @@ public class ParkingLotSystem {
         return vehicleListByColor;
     }
 
+    public List<List<String>> findVehicleByTime(int parkedTime) {
+        List<List<String>> vehicleListByColor = this.parkingLotList.stream()
+                .map(parkingLot -> parkingLot.findByTime(parkedTime))
+                .collect(Collectors.toList());
+        return vehicleListByColor;
+    }
+
     public void registerOwner( ParkingLotRegister register) {
         informObserver.registerParkingLotObserver( register );
     }

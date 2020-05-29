@@ -589,11 +589,11 @@ public class ParkingLotTest {
         Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
 
-        List<List<String>> vehicleByModel = parkingLotSystem.findVehicleByModel("BMW");
-        Assert.assertEquals(expectedBMWCarList, vehicleByModel);
+        List<List<String>> vehicleByModelList = parkingLotSystem.findVehicleByModel("BMW");
+        Assert.assertEquals(expectedBMWCarList, vehicleByModelList);
     }
 
-    //TC-14.2
+    //TC-14.3
     @Test
     public void givenBMWCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCar() {
         ParkingLot parkingLot2 = new ParkingLot(1);
@@ -624,7 +624,28 @@ public class ParkingLotTest {
         Vehicle vehicle3 = new Vehicle("BLACK", "BMW", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
 
-        List<List<String>> vehicleByModel = parkingLotSystem.findVehicleByModel("BMW");
-        Assert.assertEquals(expectedBMWCarList, vehicleByModel);
+        List<List<String>> vehicleByModelList = parkingLotSystem.findVehicleByModel("BMW");
+        Assert.assertEquals(expectedBMWCarList, vehicleByModelList);
+    }
+
+    //UC-15
+    //TC-15.1
+    @Test
+    public void givenCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes() {
+        parkingLot.setCapacity(2);
+        List<List<String>> expectedTimeList = new ArrayList<>();
+        List<String> lot1 = new ArrayList<>();
+        lot1.add("0 Vehicle{color='WHITE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
+        lot1.add("1 Vehicle{color='WHITE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedTimeList.add(lot1);
+
+        Vehicle vehicle = new Vehicle("WHITE", "BMW", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
+        List<List<String>> vehicleByTimeList = parkingLotSystem.findVehicleByTime(30);
+        Assert.assertEquals(expectedTimeList, vehicleByTimeList);
     }
 }
