@@ -85,6 +85,14 @@ public class ParkingLotSystem {
         return vehicleListByColor;
     }
 
+    public List<List<String>> findByColorAndModel(String color, String model) {
+        List<List<String>> vehicleListByColorAndModel = new ArrayList<>();
+        for (ParkingLot lot : this.parkingLotList) {
+            List<String> byColorAndModel = lot.findByColorAndModel(color, model);
+            vehicleListByColorAndModel.add(byColorAndModel);
+        }
+        return vehicleListByColorAndModel;
+    }
 
     public void registerOwner( ParkingLotRegister register) {
         informObserver.registerParkingLotObserver( register );

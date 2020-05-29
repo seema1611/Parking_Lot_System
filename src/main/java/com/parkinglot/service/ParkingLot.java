@@ -83,7 +83,17 @@ public class ParkingLot {
         return vehicleListByColor;
     }
 
-        public boolean isParkingFull() {
+    public List<String> findByColorAndModel(String color, String model) {
+        List<String> vehicleListByColorAndModel = this.vehiclesList.stream()
+                .filter(parkingSlot -> parkingSlot.getVehicle() != null)
+                .filter(parkingSlot -> parkingSlot.getVehicle().getColor().equals(color))
+                .filter(parkingSlot -> parkingSlot.getVehicle().getModel().equals(model))
+                .map(parkingSlot -> parkingSlot.getLocation() + " " + parkingSlot.getVehicle())
+                .collect(Collectors.toList());
+        return vehicleListByColorAndModel;
+    }
+
+    public boolean isParkingFull() {
         if (this.parkingCapacity == this.vehiclesList.size() && !vehiclesList.contains(null)) {
             return true;
         }
