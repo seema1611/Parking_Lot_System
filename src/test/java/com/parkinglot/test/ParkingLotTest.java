@@ -345,5 +345,23 @@ public class ParkingLotTest {
         int vehicleParkedLocation = parkingLot.findVehicle(vehicle2);
         Assert.assertEquals(1, vehicleParkedLocation);
     }
+
+
+    //TC-10.2
+    @Test
+    public void givenMultipleCarsAtMultipleParkingLots_WhenParkEvenly_shouldParkVehicleBasedOnDriverType() {
+        ParkingLot parkingLot2 = new ParkingLot(3);
+        parkingLotSystem.addLot(parkingLot2);
+        parkingLot.setCapacity(3);
+        Object vehicle2 = new Object();
+        parkingLotSystem.parkVehicle(new Object(), DriverType.NORMAL);
+        parkingLotSystem.parkVehicle(vehicle, DriverType.HANDICAP);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP);
+        parkingLotSystem.parkVehicle(new Object(), DriverType.NORMAL);
+        int vehicleParkedLocation = parkingLotSystem.findVehicle(vehicle);
+        int vehicleParkedLocation1 = parkingLotSystem.findVehicle(vehicle2);
+        Assert.assertEquals(0, vehicleParkedLocation);
+        Assert.assertEquals(0, vehicleParkedLocation1);
+    }
 }
 
