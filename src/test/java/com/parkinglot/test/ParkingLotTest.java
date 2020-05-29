@@ -367,7 +367,7 @@ public class ParkingLotTest {
     //UC11
     //TC-11.1
     @Test
-    public void givenLargeVehicleToPark_WhenParkingLotHasSpace_ShouldParkVehicle() {
+    public void givenLargeVehicleToPark_WhenInParkingLotSpace_ShouldParkVehicle() {
         parkingLot.setCapacity(2);
         Object vehicle2 = new Object();
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
