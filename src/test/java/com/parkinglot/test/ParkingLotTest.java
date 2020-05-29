@@ -592,4 +592,39 @@ public class ParkingLotTest {
         List<List<String>> vehicleByModel = parkingLotSystem.findVehicleByModel("BMW");
         Assert.assertEquals(expectedBMWCarList, vehicleByModel);
     }
+
+    //TC-14.2
+    @Test
+    public void givenBMWCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCar() {
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLotSystem.addLot(parkingLot2);
+
+        ParkingLot parkingLot3 = new ParkingLot(1);
+        parkingLotSystem.addLot(parkingLot3);
+
+        List<List<String>> expectedBMWCarList = new ArrayList<>();
+        List<String> lot1 = new ArrayList<>();
+        lot1.add("0 Vehicle{color='WHITE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedBMWCarList.add(lot1);
+
+        List<String> lot2 = new ArrayList<>();
+        lot2.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedBMWCarList.add(lot2);
+
+        List<String> lot3 = new ArrayList<>();
+        lot3.add("0 Vehicle{color='BLACK', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedBMWCarList.add(lot3);
+
+        Vehicle vehicle = new Vehicle("WHITE", "BMW", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+
+        Vehicle vehicle2 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
+        Vehicle vehicle3 = new Vehicle("BLACK", "BMW", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
+        List<List<String>> vehicleByModel = parkingLotSystem.findVehicleByModel("BMW");
+        Assert.assertEquals(expectedBMWCarList, vehicleByModel);
+    }
 }
