@@ -31,18 +31,18 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public void parkVehicle( Object vehicle ) {
-        parkingLot = maxSpaceInParkingLot();
+    public void parkVehicle(Object vehicle, DriverType driverType) {
+        parkingLot = maxSpaceInWhichParkingLot();
         if ( parkingLot.isParkingFull() ) {
             throw new ParkingLotException("Parking Is Full", ParkingLotException.ExceptionType.PARKING_FULL);
         }
-        parkingLot.parkVehicle( vehicle );
+        parkingLot.parkVehicle(vehicle, driverType);
         if ( parkingLot.isParkingFull() ) {
             informObserver.parkingFull();
         }
     }
 
-    private ParkingLot maxSpaceInParkingLot() {
+    private ParkingLot maxSpaceInWhichParkingLot() {
         return parkingLotList.stream()
                 .sorted(Comparator.comparing(list -> list.getListOfEmptyParkingSlots().size(), Comparator.reverseOrder()))
                 .collect(Collectors.toList()).get(0);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.parkinglot.test.ParkingLotTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-29T03:51:48" hostname="LAPTOP-OT35PSQH" time="0.055">
+<testsuite name="com.parkinglot.test.ParkingLotTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-29T03:54:55" hostname="LAPTOP-OT35PSQH" time="0.057">
   <properties/>
-  <testcase name="givenMultipleCarsAtMultipleParkingLotsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastIndexEmpty" classname="com.parkinglot.test.ParkingLotTest" time="0.055"/>
+  <testcase name="givenCarToPark_whenDriverIsHandicap_shouldParkedAtNearestSpot" classname="com.parkinglot.test.ParkingLotTest" time="0.057"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
