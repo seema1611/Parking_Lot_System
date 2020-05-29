@@ -1,5 +1,7 @@
 package com.parkinglot.service;
 
+import com.parkinglot.enums.DriverType;
+import com.parkinglot.enums.VehicleSize;
 import com.parkinglot.exception.ParkingLotException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class ParkingLot {
         return emptyParkingSlotList;
     }
 
-    public void parkVehicle(Object vehicle, DriverType driverType) {
+    public void parkVehicle(Object vehicle, DriverType driverType, VehicleSize vehicleSize) {
         if ( isParkedVechicle(vehicle)) {
             throw new ParkingLotException("Vehicle Already Parked", ParkingLotException.ExceptionType.VEHICLE_ALREADY_PARKED);
         }

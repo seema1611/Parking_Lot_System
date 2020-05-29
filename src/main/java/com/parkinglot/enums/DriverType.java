@@ -1,4 +1,4 @@
-package com.parkinglot.service;
+package com.parkinglot.enums;
 
 import java.util.Comparator;
 

@@ -1,5 +1,7 @@
 package com.parkinglot.service;
 
+import com.parkinglot.enums.DriverType;
+import com.parkinglot.enums.VehicleSize;
 import com.parkinglot.exception.ParkingLotException;
 import com.parkinglot.observer.InformObserver;
 import com.parkinglot.observer.ParkingLotRegister;
@@ -31,12 +33,12 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public void parkVehicle(Object vehicle, DriverType driverType) {
+    public void parkVehicle(Object vehicle, DriverType driverType, VehicleSize vehicleSize) {
         parkingLot = maxSpaceInWhichParkingLot();
         if ( parkingLot.isParkingFull() ) {
             throw new ParkingLotException("Parking Is Full", ParkingLotException.ExceptionType.PARKING_FULL);
         }
-        parkingLot.parkVehicle(vehicle, driverType);
+        parkingLot.parkVehicle(vehicle, driverType, vehicleSize);
         if ( parkingLot.isParkingFull() ) {
             informObserver.parkingFull();
         }
