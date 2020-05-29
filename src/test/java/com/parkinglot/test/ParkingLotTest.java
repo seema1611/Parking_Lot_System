@@ -433,7 +433,7 @@ public class ParkingLotTest {
     //UC-12
     //TC-12.1
     @Test
-    public void givenWhiteCarToPark_whenParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars() {
+    public void givenWhiteVehiclesToPark_whenParkingLotToParkVehicle_ShouldReturnLocationOfAllWhiteCars() {
         List<List<Integer>> expectedList = new ArrayList<>();
         List<Integer> lot1 = new ArrayList<>();
         lot1.add(0);
