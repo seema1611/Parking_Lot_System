@@ -308,4 +308,22 @@ public class ParkingLotTest {
         Object lastEmptySlot = parkingLot.getListOfEmptyParkingSlots().get(0);
         Assert.assertEquals(4, lastEmptySlot);
     }
+
+    //TC-9.4
+    @Test
+    public void givenMultipleCarsAtMultipleParkingLotsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastIndexEmpty() {
+        ParkingLot parkingLot2 = new ParkingLot(3);
+        parkingLotSystem.addLot(parkingLot2);
+        parkingLot.setCapacity(3);
+        parkingLotSystem.parkVehicle(vehicle);
+        parkingLotSystem.parkVehicle(new Object());
+        parkingLotSystem.parkVehicle(new Object());
+        parkingLotSystem.parkVehicle(new Object());
+        parkingLotSystem.unParkedVehicle(vehicle);
+        parkingLotSystem.parkVehicle(new Object());
+        Object lastEmptySlot = parkingLot.getListOfEmptyParkingSlots().get(0);
+        Object lastEmptySlot2 = parkingLot2.getListOfEmptyParkingSlots().get(0);
+        Assert.assertEquals(2, lastEmptySlot);
+        Assert.assertEquals(2, lastEmptySlot2);
+    }
 }
