@@ -377,5 +377,18 @@ public class ParkingLotTest {
         Assert.assertEquals(0, spot);
         Assert.assertEquals(1, spot1);
     }
+
+    //TC-11.2
+    @Test
+    public void givenLargeVehicleToPark_WhenParkingLotHasSpaceAndDriverIsHandicap_ShouldParkVehicle() {
+        parkingLot.setCapacity(5);
+        Object vehicle2 = new Object();
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.LARGE);
+        parkingLotSystem.parkVehicle(vehicle, DriverType.HANDICAP, VehicleSize.LARGE);
+        int spot = parkingLotSystem.findVehicle(vehicle);
+        int spot1 = parkingLotSystem.findVehicle(vehicle2);
+        Assert.assertEquals(0, spot);
+        Assert.assertEquals(4, spot1);
+    }
 }
 
