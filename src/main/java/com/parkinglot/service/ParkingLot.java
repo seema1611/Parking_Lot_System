@@ -1,103 +1,69 @@
 package com.parkinglot.service;
 
 import com.parkinglot.exception.ParkingLotException;
-import com.parkinglot.observer.InformObserver;
-import com.parkinglot.observer.ParkingLotRegister;
-
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class ParkingLot {
-    private static final int CHARGES = 20 ;
     private int parkingCapacity;
-    private List vehicleList;
-    InformObserver informObserver;
-    Instant startTime;
-    Instant endTime;
-    Duration elapsedTime;
-    Instant time;
+    private List< ParkingSlot > vehiclesList;
+    private ParkingSlot parkingSlot;
 
     public ParkingLot(int parkingCapacity) {
-        this.informObserver = new InformObserver();
-        setCapacity( parkingCapacity );
+        setCapacity(parkingCapacity);
     }
 
     public int setCapacity(int parkingCapacity) {
         this.parkingCapacity = parkingCapacity;
         initializeParkingLot();
-        return vehicleList.size();
+        return vehiclesList.size();
     }
 
     public void initializeParkingLot() {
-        this.vehicleList = new ArrayList();
-        IntStream.iterate( 0, i ->i).limit( parkingCapacity )
-                .forEach(slots -> vehicleList.add(null));
+        this.vehiclesList = new ArrayList();
+        IntStream.range(0, this.parkingCapacity)
+                .forEach(slots -> vehiclesList.add(null));
     }
 
     public List<Integer> getListOfEmptyParkingSlots() {
-        List<Integer> emptySlotList = new ArrayList<>();
+        List<Integer> emptyParkingSlotList = new ArrayList<>();
         IntStream.range(0, this.parkingCapacity)
-                .filter(slot -> vehicleList.get(slot) == null)
-                .forEach(emptySlotList::add);
-        //System.out.println(emptySlotList);
-        return emptySlotList;
+                .filter(slot -> vehiclesList.get(slot) == null)
+                .forEach(emptyParkingSlotList::add);
+        return emptyParkingSlotList;
     }
 
     public void parkVehicle(Object vehicle) {
-        if (this.parkingCapacity == this.vehicleList.size() && !vehicleList.contains(null)) {
-            throw new ParkingLotException("Parking Is Full", ParkingLotException.ExceptionType.PARKING_FULL);
-        }
-        if (this.vehicleList.contains(vehicle)) {
+        if ( isParkedVechicle(vehicle)) {
             throw new ParkingLotException("Vehicle Already Parked", ParkingLotException.ExceptionType.VEHICLE_ALREADY_PARKED);
         }
-        List slotNumber = getListOfEmptyParkingSlots();
-        this.vehicleList.set((Integer) slotNumber.get(0), vehicle);
-        startTime = Instant.now();
-        if ( !vehicleList.contains(null)) {
-            informObserver.parkingFull();
-        }
+        parkingSlot = new ParkingSlot(vehicle);
+        int emptyParkingSlot = getListOfEmptyParkingSlots().get(0);
+        this.vehiclesList.set(emptyParkingSlot, parkingSlot);
     }
 
-    public boolean isParkedVehicle( Object vehicle ) {
-        if( this.vehicleList.contains(vehicle) )
+    public boolean isParkedVechicle(Object vehicle) {
+        parkingSlot = new ParkingSlot(vehicle);
+        if (vehiclesList.contains(parkingSlot))
             return true;
-        throw new ParkingLotException( "Vehicle Not Parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED );
+        return false;
     }
 
-    public boolean unParkedVehicle( Object vehicle ) {
-        if (this.vehicleList.contains(vehicle)) {
-            this.vehicleList.remove(vehicle);
-            endTime = Instant.now();
-            informObserver.parkingAvailable();
-            return true;
-        }
-        throw new ParkingLotException( "Vehicle Not UnParked", ParkingLotException.ExceptionType.VEHICLE_NOT_UNPARKED );
+    public boolean unParkedVehicle(Object vehicle) {
+        int slot = findVehicle(vehicle);
+        vehiclesList.set(slot, null);
+        return true;
     }
 
     public int findVehicle(Object vehicle) {
-        if(vehicleList.contains(vehicle)) {
-            return vehicleList.indexOf(vehicle);
+        return vehiclesList.indexOf(parkingSlot);
+    }
+
+    public boolean isParkingFull() {
+        if (this.parkingCapacity == this.vehiclesList.size() && !vehiclesList.contains(null)) {
+            return true;
         }
-        throw new ParkingLotException("Vehicle Is Not Available", ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND);
-    }
-
-    public int getTime() {
-        int charges = CHARGES;
-        elapsedTime = Duration.between( this.endTime, this.startTime);
-        long hour = elapsedTime.toHours();
-        if ( hour == 0)
-            return charges;
-        return (int) (charges * hour);
-    }
-
-    public void registerOwner( ParkingLotRegister register) {
-        informObserver.registerParkingLotObserver( register );
-    }
-
-    public void deRegisterOwner( ParkingLotRegister register ) {
-        informObserver.deRegisterParkingLotObserver( register );
+        return false;
     }
 }
