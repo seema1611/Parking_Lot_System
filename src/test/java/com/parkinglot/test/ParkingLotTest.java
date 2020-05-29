@@ -648,4 +648,29 @@ public class ParkingLotTest {
         List<List<String>> vehicleByTimeList = parkingLotSystem.findVehicleByTime(30);
         Assert.assertEquals(expectedTimeList, vehicleByTimeList);
     }
+
+    //TC-15.2
+    @Test
+    public void givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes() {
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLotSystem.addLot(parkingLot2);
+
+        List<List<String>> expectedTimeList = new ArrayList<>();
+        List<String> lot1 = new ArrayList<>();
+        lot1.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedTimeList.add(lot1);
+
+        List<String> lot2 = new ArrayList<>();
+        lot2.add("0 Vehicle{color='BROWN', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedTimeList.add(lot2);
+
+        Vehicle vehicle = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+
+        Vehicle vehicle2 = new Vehicle("BROWN", "BMW", "MH11-9398", "Seema");
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
+        List<List<String>> vehicleByTimeList = parkingLotSystem.findVehicleByTime(30);
+        Assert.assertEquals(expectedTimeList, vehicleByTimeList);
+    }
 }
