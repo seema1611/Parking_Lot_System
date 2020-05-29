@@ -530,11 +530,10 @@ public class ParkingLotTest {
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
 
-        Vehicle vehicle2 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("BROWN", "BMW", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
 
         List<List<String>> blueVehicleColorList = parkingLotSystem.findByColorAndModel("BLUE", "TOYOTA");
-
         Assert.assertEquals(expectedBlueCarList, blueVehicleColorList);
     }
 }
