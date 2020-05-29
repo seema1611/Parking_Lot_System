@@ -3,6 +3,9 @@ package com.parkinglot.service;
 import com.parkinglot.enums.DriverType;
 import com.parkinglot.enums.VehicleSize;
 import com.parkinglot.exception.ParkingLotException;
+import com.parkinglot.model.ParkingSlot;
+import com.parkinglot.model.Vehicle;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +13,7 @@ import java.util.stream.IntStream;
 
 public class ParkingLot {
     private int parkingCapacity;
-    private List< ParkingSlot > vehiclesList;
+    private List<ParkingSlot> vehiclesList;
     private ParkingSlot parkingSlot;
     private int emptyParkingSlot;
 
@@ -38,12 +41,12 @@ public class ParkingLot {
         return emptyParkingSlotList;
     }
 
-    public void parkVehicle(Object vehicle, DriverType driverType, VehicleSize vehicleSize) {
-        if ( isParkedVechicle(vehicle)) {
+    public void parkVehicle(Vehicle vehicle, DriverType driverType, VehicleSize vehicleSize) {
+        if (isParkedVechicle(vehicle)) {
             throw new ParkingLotException("Vehicle Already Parked", ParkingLotException.ExceptionType.VEHICLE_ALREADY_PARKED);
         }
-        parkingSlot = new ParkingSlot(vehicle);
         emptyParkingSlot = getEmptyParkingSlotListBasedOnDriverType(driverType);
+        parkingSlot = new ParkingSlot(vehicle, emptyParkingSlot);
         this.vehiclesList.set(emptyParkingSlot, parkingSlot);
     }
 
@@ -54,14 +57,14 @@ public class ParkingLot {
         return emptySlots.get(0);
     }
     
-    public boolean isParkedVechicle(Object vehicle) {
-        parkingSlot = new ParkingSlot(vehicle);
+    public boolean isParkedVechicle(Vehicle vehicle) {
+        parkingSlot = new ParkingSlot(vehicle, emptyParkingSlot);
         if (vehiclesList.contains(parkingSlot))
             return true;
         return false;
     }
 
-    public boolean unParkedVehicle(Object vehicle) {
+    public boolean unParkedVehicle(Vehicle vehicle) {
         int slot = findVehicle(vehicle);
         vehiclesList.set(slot, null);
         return true;
@@ -71,7 +74,16 @@ public class ParkingLot {
         return vehiclesList.indexOf(parkingSlot);
     }
 
-    public boolean isParkingFull() {
+    public List<Integer> findByColor(String color) {
+        List<Integer> vehicleListByColor = this.vehiclesList.stream()
+                .filter(parkingSlot -> parkingSlot.getVehicle() != null)
+                .filter(parkingSlot -> parkingSlot.getVehicle().getColor().equals(color))
+                .map(parkingSlot -> parkingSlot.getLocation())
+                .collect(Collectors.toList());
+        return vehicleListByColor;
+    }
+
+        public boolean isParkingFull() {
         if (this.parkingCapacity == this.vehiclesList.size() && !vehiclesList.contains(null)) {
             return true;
         }
