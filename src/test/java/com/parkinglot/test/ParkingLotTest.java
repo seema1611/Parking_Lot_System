@@ -294,4 +294,18 @@ public class ParkingLotTest {
         boolean isLotAdded = parkingLotSystem.isLotAdded(parkingLot1);
         Assert.assertFalse(isLotAdded);
     }
+
+    //TC-9.3
+    @Test
+    public void givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastIndexEmpty() {
+        parkingLot.setCapacity(5);
+        parkingLotSystem.parkVehicle(vehicle);
+        parkingLotSystem.parkVehicle(new Object());
+        parkingLotSystem.parkVehicle(new Object());
+        parkingLotSystem.parkVehicle(new Object());
+        parkingLotSystem.unParkedVehicle(vehicle);
+        parkingLotSystem.parkVehicle(new Object());
+        Object lastEmptySlot = parkingLot.getListOfEmptyParkingSlots().get(0);
+        Assert.assertEquals(4, lastEmptySlot);
+    }
 }
