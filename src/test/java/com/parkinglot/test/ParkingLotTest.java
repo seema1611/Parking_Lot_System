@@ -286,4 +286,12 @@ public class ParkingLotTest {
         boolean isLotAdded = parkingLotSystem.isLotAdded(parkingLot);
         Assert.assertTrue(isLotAdded);
     }
+
+    //TC-9.2
+    @Test
+    public void givenParkingLotSystem_WhenNotAddedLots_ShouldReturnFalse() {
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        boolean isLotAdded = parkingLotSystem.isLotAdded(parkingLot1);
+        Assert.assertFalse(isLotAdded);
+    }
 }
