@@ -70,6 +70,13 @@ public class ParkingLotSystem {
         throw new ParkingLotException("Vehicle Is Not Available", ParkingLotException.ExceptionType.VEHICLE_NOT_UNPARKED);
     }
 
+    public void registerOwner( ParkingLotRegister register) {
+        informObserver.registerParkingLotObserver( register );
+    }
+
+    public void deRegisterOwner( ParkingLotRegister register ) {
+        informObserver.deRegisterParkingLotObserver( register );
+    }
 
     public int findVehicle(Vehicle vehicle) {
         for (ParkingLot parkingLot : parkingLotList)
@@ -106,13 +113,5 @@ public class ParkingLotSystem {
                 .map(parkingLot -> parkingLot.findByTime(parkedTime))
                 .collect(Collectors.toList());
         return vehicleListByColor;
-    }
-
-    public void registerOwner( ParkingLotRegister register) {
-        informObserver.registerParkingLotObserver( register );
-    }
-
-    public void deRegisterOwner( ParkingLotRegister register ) {
-        informObserver.deRegisterParkingLotObserver( register );
     }
 }

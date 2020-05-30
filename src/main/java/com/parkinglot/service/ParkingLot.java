@@ -47,7 +47,7 @@ public class ParkingLot {
             throw new ParkingLotException("Vehicle Already Parked", ParkingLotException.ExceptionType.VEHICLE_ALREADY_PARKED);
         }
         emptyParkingSlot = getEmptyParkingSlotListBasedOnDriverType(driverType);
-        parkingSlot = new ParkingSlot(vehicle, emptyParkingSlot);
+        parkingSlot = new ParkingSlot(vehicle, emptyParkingSlot, vehicleSize, driverType);
         this.vehiclesList.set(emptyParkingSlot, parkingSlot);
     }
 
@@ -57,9 +57,11 @@ public class ParkingLot {
                 .collect(Collectors.toList());
         return emptySlots.get(0);
     }
-    
+
     public boolean isParkedVechicle(Vehicle vehicle) {
-        parkingSlot = new ParkingSlot(vehicle, emptyParkingSlot);
+        VehicleSize vehicleSize = null;
+        DriverType driverType = null;
+        parkingSlot = new ParkingSlot(vehicle, emptyParkingSlot, vehicleSize, driverType);
         if (vehiclesList.contains(parkingSlot))
             return true;
         return false;
@@ -69,6 +71,13 @@ public class ParkingLot {
         int slot = findVehicle(vehicle);
         vehiclesList.set(slot, null);
         return true;
+    }
+
+    public boolean isParkingFull() {
+        if (this.parkingCapacity == this.vehiclesList.size() && !vehiclesList.contains(null)) {
+            return true;
+        }
+        return false;
     }
 
     public int findVehicle(Object vehicle) {
@@ -110,12 +119,5 @@ public class ParkingLot {
                 .map(parkingSlot -> parkingSlot.getLocation() + " " + parkingSlot.getVehicle())
                 .collect(Collectors.toList());
         return vehicleListByTime;
-    }
-
-    public boolean isParkingFull() {
-        if (this.parkingCapacity == this.vehiclesList.size() && !vehiclesList.contains(null)) {
-            return true;
-        }
-        return false;
     }
 }
