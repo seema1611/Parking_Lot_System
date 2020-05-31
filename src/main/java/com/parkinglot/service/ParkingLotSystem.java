@@ -121,4 +121,11 @@ public class ParkingLotSystem {
                 .collect(Collectors.toList());
         return vehicleListByColor;
     }
+
+    public List<List<String>> findAllVehicle() {
+        List<List<String>> allVehicleList = this.parkingLotList.stream()
+                .map(parkingLot -> parkingLot.findAllVehicle())
+                .collect(Collectors.toList());
+        return allVehicleList;
+    }
 }

@@ -131,4 +131,12 @@ public class ParkingLot {
                 .collect(Collectors.toList());
         return vehicleListByTime;
     }
+
+    public List<String> findAllVehicle() {
+        List<String> allVehicleList = this.vehiclesList.stream()
+                .filter(parkingSlot -> parkingSlot.getVehicle() != null)
+                .map(parkingSlot -> parkingSlot.getLocation() + " " + parkingSlot.getVehicle())
+                .collect(Collectors.toList());
+        return allVehicleList;
+    }
 }

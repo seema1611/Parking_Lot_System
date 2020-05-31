@@ -694,4 +694,51 @@ public class ParkingLotTest {
         List<List<String>> vehicleList = parkingLotSystem.findVehicleBySizeDriverAndSlot(VehicleSize.SMALL, DriverType.NORMAL, 2);
         Assert.assertEquals(expectedList, vehicleList);
     }
+
+    //UC-17
+    //TC-17
+    @Test
+    public void givenParkingLotSystem_WhenParkedVehicle_ShouldReturnDetailsOfAllVehicle() {
+        List<List<String>> expectedList = new ArrayList<>();
+        List<String> lot = new ArrayList();
+        lot.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        lot.add("1 Vehicle{color='WHITE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
+        expectedList.add(lot);
+        parkingLot.setCapacity(2);
+
+        Vehicle vehicle1 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.HANDICAP, VehicleSize.LARGE);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
+
+        List<List<String>> vehicleList = parkingLotSystem.findAllVehicle();
+        Assert.assertEquals(expectedList, vehicleList);
+    }
+
+    //TC-17.2
+    @Test
+    public void givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturndetailsOfVehicle() {
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLotSystem.addLot(parkingLot2);
+
+        List<List<String>> expectedList = new ArrayList<>();
+        List<String> lot1 = new ArrayList<>();
+        List<String> lot2 = new ArrayList<>();
+
+        lot1.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        lot2.add("0 Vehicle{color='WHITE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
+
+        expectedList.add(lot1);
+        expectedList.add(lot2);
+
+        Vehicle vehicle1 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.HANDICAP, VehicleSize.LARGE);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
+
+        List<List<String>> vehicleList = parkingLotSystem.findAllVehicle();
+        Assert.assertEquals(expectedList, vehicleList);
+    }
 }
