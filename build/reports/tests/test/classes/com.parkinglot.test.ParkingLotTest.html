@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">36</div>
+<div class="counter">39</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.241s</div>
+<div class="counter">0.201s</div>
 <p>duration</p>
 </div>
 </td>
@@ -76,12 +76,12 @@
 </thead>
 <tr>
 <td class="success">givenBMWCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCars</td>
-<td class="success">0.008s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenBMWCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCar</td>
-<td class="success">0.006s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -91,12 +91,12 @@
 </tr>
 <tr>
 <td class="success">givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes</td>
-<td class="success">0.009s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenCarToPark_WhenParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes</td>
-<td class="success">0.030s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -111,7 +111,7 @@
 </tr>
 <tr>
 <td class="success">givenMultipleVehiclesAtMultipleParkingLotsLessThanActualCapacity_WhenParkEvenly_shouldReturnFirstIndexEmpty</td>
-<td class="success">0.002s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -126,17 +126,17 @@
 </tr>
 <tr>
 <td class="success">givenMultipleVehiclesLessThanActualCapacity_WhenParkEvenly_shouldReturnFirstIndexEmpty</td>
-<td class="success">0.003s</td>
+<td class="success">0.019s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenAddedLots_ShouldReturnTrue</td>
-<td class="success">0.003s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenListOfEmptySlotsCalled_ShouldReturnAvailableSlots</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -146,12 +146,27 @@
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenNotParkedBlueToyotaCar_ShouldReturnEmptyList</td>
-<td class="success">0.023s</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenParkingLotSystem_WhenParkedLargeVehicleAndDriverIsHandicap_ShouldReturnDetailsOfVehicle</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenParkingLotSystem_WhenParkedSmallVehicleAndDriverIsHandicap_ShouldReturnDetailsOfVehicle</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenParkingLotSystem_WhenParkedSmallVehicleAndDriverIsNormal_ShouldReturnDetailsOfVehicle</td>
+<td class="success">0.028s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenParkingLotSystem_WhenParkingCapacityIsSet_ShouldReturnParkingCapacity</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -166,42 +181,42 @@
 </tr>
 <tr>
 <td class="success">givenVehicleToPark_WhenCapacityIs2_ShouldBeAbleToPark2Vehicle</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenVehicleToPark_WhenNotParked_ShouldReturnException</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">givenVehicleToPark_WhenNotParked_ShouldReturnException</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">givenVehicleToPark_WhenParked_ShouldReturnTrue</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToPark_WhenSameVehicleAlreadyParked_ShouldThrowException</td>
-<td class="success">0.003s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToPark_whenDriverIsHandicap_shouldParkedAtNearestSpot</td>
-<td class="success">0.005s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToUnPark_WhenCapacityIs2_ShouldBeAbleToUnPark2Vehicle</td>
-<td class="success">0.006s</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenVehicleToUnPark_WhenNotParked_ShouldReturnException</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicleToUnPark_WhenUnParked_ShouldReturnTrue</td>
-<td class="success">0.061s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenVehicleToUnpark_WhenNotParked_ShouldReturnException</td>
-<td class="success">0.002s</td>
+<td class="success">0.059s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -211,22 +226,22 @@
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingFullAndAirportSecurityIsNotObserver_ShouldInformAirportSecurity</td>
-<td class="success">0.003s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingFullAndAirportSecurityIsObserver_ShouldInformAirportSecurity</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingFullAndOwnerIsNotObserver_ShouldInformOwner</td>
-<td class="success">0.006s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingFullAndOwnerIsObserver_ShouldInformOwner</td>
-<td class="success">0.031s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -236,17 +251,17 @@
 </tr>
 <tr>
 <td class="success">givenVehicle_WhenParkingIsAvailableAndAirportIsObserver_ShouldInformAirport</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">givenVehicle_WhenParkingIsAvailableAndOwnerIsObserver_ShouldInformOwner</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">givenWhiteCarToPark_whenMultipleParkingLotToParkVehicle_shouldReturnLocationOfAllWhiteCars</td>
-<td class="success">0.016s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -264,7 +279,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.1</a> at 30 May, 2020 9:45:26 AM</p>
+<a href="http://www.gradle.org">Gradle 6.1</a> at 31 May, 2020 9:37:55 AM</p>
 </div>
 </div>
 </body>

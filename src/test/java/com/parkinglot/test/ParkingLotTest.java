@@ -89,7 +89,7 @@ public class ParkingLotTest {
 
     //TC-2.2
     @Test
-    public void givenVehicleToUnpark_WhenNotParked_ShouldReturnException() {
+    public void givenVehicleToUnPark_WhenNotParked_ShouldReturnException() {
         try {
             parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
             parkingLotSystem.unParkedVehicle(new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema"));
@@ -298,16 +298,18 @@ public class ParkingLotTest {
     @Test
     public void givenMultipleVehiclesLessThanActualCapacity_WhenParkEvenly_shouldReturnFirstIndexEmpty() {
         parkingLot.setCapacity(5);
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle4 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.unParkedVehicle(vehicle);
-        Vehicle vehicle4 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle4, DriverType.NORMAL, VehicleSize.SMALL);
+
         Object emptySlot = parkingLot.getListOfEmptyParkingSlots().get(0);
         Assert.assertEquals(0, emptySlot);
     }
@@ -318,14 +320,16 @@ public class ParkingLotTest {
         parkingLot.setCapacity(3);
         ParkingLot parkingLot1 = new ParkingLot(2);
         parkingLotSystem.addLot(parkingLot1);
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.unParkedVehicle(vehicle);
-        Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
         Object emptySlot = parkingLot.getListOfEmptyParkingSlots().get(0);
         Object emptySlot1 = parkingLot1.getListOfEmptyParkingSlots().get(0);
         Assert.assertEquals(0, emptySlot);
@@ -337,17 +341,19 @@ public class ParkingLotTest {
     @Test
     public void givenVehicleToPark_whenDriverIsHandicap_shouldParkedAtNearestSpot() {
         parkingLot.setCapacity(5);
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle3, DriverType.HANDICAP, VehicleSize.SMALL);
         parkingLotSystem.unParkedVehicle(vehicle2);
         parkingLotSystem.unParkedVehicle(vehicle);
         parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
+
         int locationOfParkedVehicle = parkingLot.findVehicle(vehicle2);
         Assert.assertEquals(1, locationOfParkedVehicle);
     }
@@ -358,13 +364,16 @@ public class ParkingLotTest {
         parkingLot.setCapacity(3);
         ParkingLot parkingLot1 = new ParkingLot(3);
         parkingLotSystem.addLot(parkingLot1);
+
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle, DriverType.HANDICAP, VehicleSize.SMALL);
-        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
-        Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
         int locationOfParkedVehicle = parkingLotSystem.findVehicle(vehicle);
         int locationOfParkedVehicle1 = parkingLotSystem.findVehicle(vehicle2);
         Assert.assertEquals(0, locationOfParkedVehicle);
@@ -377,8 +386,10 @@ public class ParkingLotTest {
     public void givenLargeVehicleToPark_WhenParkingLotHasSpace_ShouldParkVehicle() {
         parkingLot.setCapacity(2);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.LARGE);
+
         int vehicleSpot = parkingLotSystem.findVehicle(vehicle);
         int vehicleSpot1 = parkingLotSystem.findVehicle(vehicle1);
         Assert.assertEquals(0, vehicleSpot);
@@ -390,8 +401,10 @@ public class ParkingLotTest {
     public void givenLargeVehicleToPark_WhenParkingLotHasSpaceAndDriverIsHandicap_ShouldParkVehicle() {
         parkingLot.setCapacity(10);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.LARGE);
         parkingLotSystem.parkVehicle(vehicle, DriverType.HANDICAP, VehicleSize.LARGE);
+
         int vehicleSpot = parkingLotSystem.findVehicle(vehicle);
         int vehicleSpot1 = parkingLotSystem.findVehicle(vehicle1);
         Assert.assertEquals(0, vehicleSpot);
@@ -404,13 +417,16 @@ public class ParkingLotTest {
         parkingLot.setCapacity(3);
         ParkingLot parkingLot1 = new ParkingLot(3);
         parkingLotSystem.addLot(parkingLot1);
+
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle, DriverType.HANDICAP, VehicleSize.LARGE);
-        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
-        Vehicle vehicle3 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.LARGE);
+
         int locationOfParkedVehicle = parkingLotSystem.findVehicle(vehicle);
         int locationOfParkedVehicle1 = parkingLotSystem.findVehicle(vehicle3);
         Assert.assertEquals(0, locationOfParkedVehicle);
@@ -427,10 +443,13 @@ public class ParkingLotTest {
         lot1.add(0);
         lot1.add(1);
         expectedWhiteCarList.add(lot1);
+
         Vehicle vehicle = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<Integer>> whiteVehicleColorList = parkingLotSystem.findVehicleByColor("WHITE");
         Assert.assertEquals(expectedWhiteCarList, whiteVehicleColorList);
     }
@@ -447,10 +466,13 @@ public class ParkingLotTest {
         lot2.add(0);
         expectedWhiteCarList.add(lot1);
         expectedWhiteCarList.add(lot2);
+
         Vehicle vehicle = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<Integer>> whiteVehicleColorList = parkingLotSystem.findVehicleByColor("WHITE");
         Assert.assertEquals(expectedWhiteCarList, whiteVehicleColorList);
     }
@@ -463,10 +485,13 @@ public class ParkingLotTest {
         List<List<String>> expectedBlueCarList = new ArrayList<>();
         List<String> blueCarList = new ArrayList();
         expectedBlueCarList.add(blueCarList);
+
         Vehicle vehicle1 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<String>> blueVehicleColorList = parkingLotSystem.findByColorAndModel("BLUE", "TOYOTA");
         Assert.assertEquals(expectedBlueCarList, blueVehicleColorList);
     }
@@ -476,24 +501,31 @@ public class ParkingLotTest {
     public void givenBlueToyotaCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBlueToyotaCar() {
         ParkingLot parkingLot2 = new ParkingLot(1);
         parkingLotSystem.addLot(parkingLot2);
+
         ParkingLot parkingLot3 = new ParkingLot(1);
         parkingLotSystem.addLot(parkingLot3);
+
         List<List<String>> expectedBlueCarList = new ArrayList<>();
         List<String> lot1 = new ArrayList<>();
-        lot1.add("0 Vehicle{color='BLUE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
-        expectedBlueCarList.add(lot1);
         List<String> lot2 = new ArrayList<>();
-        lot2.add("0 Vehicle{color='BLUE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
-        expectedBlueCarList.add(lot2);
         List<String> lot3 = new ArrayList<>();
+
+        lot1.add("0 Vehicle{color='BLUE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
+        lot2.add("0 Vehicle{color='BLUE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
         lot3.add("0 Vehicle{color='BLUE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
+
+        expectedBlueCarList.add(lot1);
+        expectedBlueCarList.add(lot2);
         expectedBlueCarList.add(lot3);
+
         Vehicle vehicle1 = new Vehicle("BLUE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("BLUE", "TOYOTA", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle3 = new Vehicle("BLUE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<String>> blueVehicleColorList = parkingLotSystem.findByColorAndModel("BLUE", "TOYOTA");
         Assert.assertEquals(expectedBlueCarList, blueVehicleColorList);
     }
@@ -507,37 +539,47 @@ public class ParkingLotTest {
         List<String> lot1 = new ArrayList<>();
         lot1.add("1 Vehicle{color='WHITE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
         expectedBMWCarList.add(lot1);
+
         Vehicle vehicle = new Vehicle("WHITE", "BMW", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<String>> vehicleByModelList = parkingLotSystem.findVehicleByModel("BMW");
         Assert.assertEquals(expectedBMWCarList, vehicleByModelList);
     }
 
-    //TC-14.3
+    //TC-14.2
     @Test
     public void givenBMWCar_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllBMWCar() {
         ParkingLot parkingLot2 = new ParkingLot(1);
         parkingLotSystem.addLot(parkingLot2);
+
         ParkingLot parkingLot3 = new ParkingLot(1);
         parkingLotSystem.addLot(parkingLot3);
+
         List<List<String>> expectedBMWCarList = new ArrayList<>();
         List<String> lot1 = new ArrayList<>();
-        lot1.add("0 Vehicle{color='WHITE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
-        expectedBMWCarList.add(lot1);
         List<String> lot2 = new ArrayList<>();
-        lot2.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
-        expectedBMWCarList.add(lot2);
         List<String> lot3 = new ArrayList<>();
+
+        lot1.add("0 Vehicle{color='WHITE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        lot2.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
         lot3.add("0 Vehicle{color='BLACK', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+
+        expectedBMWCarList.add(lot1);
+        expectedBMWCarList.add(lot2);
         expectedBMWCarList.add(lot3);
+
         Vehicle vehicle = new Vehicle("WHITE", "BMW", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle3 = new Vehicle("BLACK", "BMW", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<String>> vehicleByModelList = parkingLotSystem.findVehicleByModel("BMW");
         Assert.assertEquals(expectedBMWCarList, vehicleByModelList);
     }
@@ -552,10 +594,13 @@ public class ParkingLotTest {
         lot1.add("0 Vehicle{color='WHITE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
         lot1.add("1 Vehicle{color='WHITE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
         expectedTimeList.add(lot1);
+
         Vehicle vehicle = new Vehicle("WHITE", "BMW", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<String>> vehicleByTimeList = parkingLotSystem.findVehicleByTime(30);
         Assert.assertEquals(expectedTimeList, vehicleByTimeList);
     }
@@ -565,18 +610,88 @@ public class ParkingLotTest {
     public void givenCarToPark_WhenMultipleParkingLotToParkVehicle_ShouldReturnLocationOfAllCarsParkedWithin30Minutes() {
         ParkingLot parkingLot2 = new ParkingLot(1);
         parkingLotSystem.addLot(parkingLot2);
+
         List<List<String>> expectedTimeList = new ArrayList<>();
         List<String> lot1 = new ArrayList<>();
-        lot1.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
-        expectedTimeList.add(lot1);
         List<String> lot2 = new ArrayList<>();
+
+        lot1.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
         lot2.add("0 Vehicle{color='BROWN', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+
+        expectedTimeList.add(lot1);
         expectedTimeList.add(lot2);
+
         Vehicle vehicle = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
-        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         Vehicle vehicle2 = new Vehicle("BROWN", "BMW", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle, DriverType.NORMAL, VehicleSize.SMALL);
         parkingLotSystem.parkVehicle(vehicle2, DriverType.NORMAL, VehicleSize.SMALL);
+
         List<List<String>> vehicleByTimeList = parkingLotSystem.findVehicleByTime(30);
         Assert.assertEquals(expectedTimeList, vehicleByTimeList);
+    }
+
+    //UC-16
+    //TC-16.1
+    @Test
+    public void givenParkingLotSystem_WhenParkedSmallVehicleAndDriverIsHandicap_ShouldReturnDetailsOfVehicle() {
+        parkingLot.setCapacity(3);
+        List<List<String>> expectedList = new ArrayList<>();
+        List<String> lot = new ArrayList();
+        lot.add("1 Vehicle{color='WHITE', model='TOYOTA', numberPlate='MH11-9398', attender='Seema'}");
+        expectedList.add(lot);
+
+        Vehicle vehicle1 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle3 = new Vehicle("BROWN", "BMW", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.HANDICAP, VehicleSize.LARGE);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
+        List<List<String>> vehicleList = parkingLotSystem.findVehicleBySizeDriverAndSlot(VehicleSize.SMALL, DriverType.HANDICAP, 1);
+        Assert.assertEquals(expectedList, vehicleList);
+    }
+
+    //TC-16.2
+    @Test
+    public void givenParkingLotSystem_WhenParkedLargeVehicleAndDriverIsHandicap_ShouldReturnDetailsOfVehicle() {
+        parkingLot.setCapacity(3);
+        List<List<String>> expectedList = new ArrayList<>();
+        List<String> lot = new ArrayList();
+        lot.add("0 Vehicle{color='BLUE', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedList.add(lot);
+
+        Vehicle vehicle1 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle3 = new Vehicle("BROWN", "BMW", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.HANDICAP, VehicleSize.LARGE);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
+        List<List<String>> vehicleList = parkingLotSystem.findVehicleBySizeDriverAndSlot(VehicleSize.LARGE, DriverType.HANDICAP, 0);
+        Assert.assertEquals(expectedList, vehicleList);
+    }
+
+    //TC-16.3
+    @Test
+    public void givenParkingLotSystem_WhenParkedSmallVehicleAndDriverIsNormal_ShouldReturnDetailsOfVehicle() {
+        parkingLot.setCapacity(3);
+        List<List<String>> expectedList = new ArrayList<>();
+        List<String> lot = new ArrayList();
+        lot.add("2 Vehicle{color='BROWN', model='BMW', numberPlate='MH11-9398', attender='Seema'}");
+        expectedList.add(lot);
+
+        Vehicle vehicle1 = new Vehicle("BLUE", "BMW", "MH11-9398", "Seema");
+        Vehicle vehicle2 = new Vehicle("WHITE", "TOYOTA", "MH11-9398", "Seema");
+        Vehicle vehicle3 = new Vehicle("BROWN", "BMW", "MH11-9398", "Seema");
+
+        parkingLotSystem.parkVehicle(vehicle1, DriverType.HANDICAP, VehicleSize.LARGE);
+        parkingLotSystem.parkVehicle(vehicle2, DriverType.HANDICAP, VehicleSize.SMALL);
+        parkingLotSystem.parkVehicle(vehicle3, DriverType.NORMAL, VehicleSize.SMALL);
+
+        List<List<String>> vehicleList = parkingLotSystem.findVehicleBySizeDriverAndSlot(VehicleSize.SMALL, DriverType.NORMAL, 2);
+        Assert.assertEquals(expectedList, vehicleList);
     }
 }

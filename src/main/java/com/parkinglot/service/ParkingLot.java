@@ -120,4 +120,15 @@ public class ParkingLot {
                 .collect(Collectors.toList());
         return vehicleListByTime;
     }
+
+    public List<String> findBySizeDriverAndSlot(VehicleSize vehicleSize, DriverType driverType, int slot) {
+        List<String> vehicleListByTime = this.vehiclesList.stream()
+                .filter(parkingSlot -> parkingSlot.getVehicle() != null)
+                .filter(parkingSlot -> parkingSlot.vehicleSize.equals(vehicleSize))
+                .filter(parkingSlot -> parkingSlot.driverType.equals(driverType))
+                .filter(parkingSlot -> parkingSlot.getLocation() == slot )
+                .map(parkingSlot -> parkingSlot.getLocation() + " " + parkingSlot.getVehicle())
+                .collect(Collectors.toList());
+        return vehicleListByTime;
+    }
 }

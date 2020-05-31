@@ -114,4 +114,11 @@ public class ParkingLotSystem {
                 .collect(Collectors.toList());
         return vehicleListByColor;
     }
+
+    public List<List<String>> findVehicleBySizeDriverAndSlot(VehicleSize vehicleSize, DriverType driverType, int slot) {
+        List<List<String>> vehicleListByColor = this.parkingLotList.stream()
+                .map(parkingLot -> parkingLot.findBySizeDriverAndSlot(vehicleSize, driverType, slot))
+                .collect(Collectors.toList());
+        return vehicleListByColor;
+    }
 }
